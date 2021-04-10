@@ -1,6 +1,6 @@
 {
   "extends": [
-    "config:js-app",
+    "config:js-lib",
     ":automergeMajor",
     ":automergePr",
     ":automergeRequireAllStatusChecks",
