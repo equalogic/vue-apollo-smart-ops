@@ -1,0 +1,13 @@
+{
+  "directory": "src/",
+  "exclude": [
+    "\\.(spec|e2e-spec)\\.ts$",
+    "src/cli/",
+    "src/database/",
+    "src/testing/"
+  ],
+  "location": "all",
+  "structure": "flat",
+  "singleQuotes": true,
+  "delete": true
+}
