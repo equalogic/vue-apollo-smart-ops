@@ -18,7 +18,7 @@ export function isGraphQLError(error: GraphQLError | any): error is GraphQLError
   return error.extensions !== undefined;
 }
 
-export abstract class AbstractApolloErrorProcessor<TApp = Vue, TContext = ApolloOperationContext> {
+export class ApolloErrorProcessor<TApp = Vue, TContext = ApolloOperationContext> {
   public static FriendlyMessages: Record<string, string> = {
     FAILED_TO_FETCH:
       'Unable to communicate with server. The service may be down or you may be offline. Try again in a moment.',
@@ -39,7 +39,13 @@ export abstract class AbstractApolloErrorProcessor<TApp = Vue, TContext = Apollo
     this.processedErrors = this.processApolloError(error);
   }
 
-  public abstract showErrorNotifications(): void;
+  public showErrorNotifications(): void {
+    // This is just an example - to do something else (e.g. showing a visible notification to the user), you should
+    // implement your own class that extends ApolloErrorProcessor and replace this showErrorNotifications method.
+    this.processedErrors.forEach(error => {
+      console.error(`${error.type}: ${error.message}`, error.error);
+    });
+  }
 
   public cleanError(error: ApolloError | GraphQLError | Record<string, any>): Error {
     if (error instanceof Error) {
@@ -93,7 +99,7 @@ export abstract class AbstractApolloErrorProcessor<TApp = Vue, TContext = Apollo
   protected getFriendlyMessage(errorCode: string, errorMessage: string): string;
   protected getFriendlyMessage(errorCode: string): string | undefined;
   protected getFriendlyMessage(errorCode: string, errorMessage?: string): string | undefined {
-    return (this.constructor as typeof AbstractApolloErrorProcessor).FriendlyMessages[errorCode] ?? errorMessage;
+    return (this.constructor as typeof ApolloErrorProcessor).FriendlyMessages[errorCode] ?? errorMessage;
   }
 
   private processApolloError(error: ApolloError): ProcessedApolloError[] {
