@@ -90,7 +90,11 @@ export async function mutateWithErrorHandling<
   client?: ApolloMutationClient<TResult, TVariables>,
 ): Promise<MutationResult<TResult>> {
   const mutate =
-    client === undefined ? app.$apollo : typeof client === 'function' ? client : client.mutate.bind(client);
+    client === undefined
+      ? app.$apollo.mutate.bind(app.$apollo)
+      : typeof client === 'function'
+      ? client
+      : client.mutate.bind(client);
 
   try {
     const result = await mutate({
