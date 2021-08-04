@@ -3,6 +3,7 @@
  */
 
 export * from './ApolloErrorProcessor';
+export * from './handleApolloError';
 export * from './mutation';
 export * from './query';
 export * from './subscription';
