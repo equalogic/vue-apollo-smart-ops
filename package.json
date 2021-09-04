@@ -62,7 +62,6 @@
     "graphql-tag": "2.12.5",
     "husky": "7.0.2",
     "jest": "27.1.0",
-    "jest-html-reporters": "2.1.6",
     "lint-staged": "11.1.2",
     "mkdirp": "1.0.4",
     "np": "7.5.0",
