@@ -12,13 +12,5 @@ module.exports = {
   },
   collectCoverage: false,
   collectCoverageFrom: ['<rootDir>/components/**/*.vue', '<rootDir>/pages/**/*.vue'],
-  reporters: [
-    'default',
-    [
-      'jest-html-reporters',
-      {
-        filename: 'test/.results/test-results.html',
-      },
-    ],
-  ],
+  reporters: ['default'],
 };
