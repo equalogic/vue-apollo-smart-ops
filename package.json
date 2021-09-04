@@ -29,6 +29,9 @@
     "lodash.isplainobject": "^4.0",
     "lodash.mapvalues": "^4.6"
   },
+  "optionalDependencies": {
+    "vue-class-component": "^7.2"
+  },
   "peerDependencies": {
     "apollo-client": ">=2.6",
     "apollo-link": ">=1.2",
