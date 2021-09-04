@@ -64,12 +64,16 @@ export type VueApolloSmartQueryOptions<
   error?: VueApolloSmartQueryErrorHandler<TResult, TVariables, TError, TComponent>;
 };
 
+export type VueApolloSmartQueryOptionsFunction<TResult, TVariables, TError = ApolloError, TApp extends Vue = Vue> = <
+  TComponent extends Vue = TApp
+>(
+  options?: Partial<Omit<VueApolloSmartQueryOptions<TResult, TVariables, TError, TComponent>, 'query'>>,
+) => VueApolloSmartQueryOptions<TResult, TVariables>;
+
 export function createSmartQueryOptionsFunction<TResult, TVariables, TError = ApolloError, TApp extends Vue = Vue>(
   query: DocumentNode,
   onError?: ApolloOperationErrorHandlerFunction<TError, TApp>,
-): <TComponent extends Vue = TApp>(
-  options?: Partial<Omit<VueApolloSmartQueryOptions<TResult, TVariables, TError, TComponent>, 'query'>>,
-) => VueApolloSmartQueryOptions<TResult, TVariables> {
+): VueApolloSmartQueryOptionsFunction<TResult, TVariables, TError, TApp> {
   return (options = {}) => {
     const defaultErrorHandlerFn: VueApolloSmartQueryErrorHandler<TResult, TVariables, TError, TApp> = (
       error: TError,
