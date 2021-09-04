@@ -1,16 +1,17 @@
+const { pathsToModuleNameMapper } = require('ts-jest/utils');
+const { compilerOptions } = require('./tsconfig');
+
 module.exports = {
-  moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/$1',
-    '^~/(.*)$': '<rootDir>/$1',
-    '^vue$': 'vue/dist/vue.common.js',
-  },
-  moduleFileExtensions: ['js', 'ts', 'vue', 'json'],
-  transform: {
-    '^.+\\.js$': 'babel-jest',
-    '^.+\\.ts?$': 'ts-jest',
-    '.*\\.(vue)$': 'vue-jest',
-  },
-  collectCoverage: false,
-  collectCoverageFrom: ['<rootDir>/components/**/*.vue', '<rootDir>/pages/**/*.vue'],
+  preset: 'ts-jest',
+  testEnvironment: 'node',
+  roots: ['<rootDir>/src/', '<rootDir>/test/'],
+  testRegex: '\\.(spec|e2e-spec)\\.ts$',
+  testPathIgnorePatterns: ['/node_modules/'],
+  testTimeout: 20000,
+  moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
+    prefix: '<rootDir>/',
+  }),
+  coveragePathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/test/'],
+  coverageDirectory: '<rootDir>/test/.coverage',
   reporters: ['default'],
 };
