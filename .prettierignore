@@ -1,0 +1,13 @@
+# Ignore workflows
+.github
+
+# Node modules
+node_modules
+
+# Test results
+test/.results
+test/.coverage
+
+# IDE
+.idea
+.vscode
