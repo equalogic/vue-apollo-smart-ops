@@ -1,6 +1,6 @@
 {
   "name": "vue-apollo-smart-ops",
-  "version": "0.0.4",
+  "version": "0.1.0-alpha.2",
   "description": "Create TypeScript-typed operation functions for your Vue Apollo queries and mutations.",
   "author": "Madscience Ltd",
   "license": "MIT",
@@ -19,7 +19,7 @@
     "lint:fix": "eslint --ext .ts --ignore-path .gitignore . --fix",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:ci": "rimraf test/.results && mkdirp test/.results && jest --ci --runInBand --passWithNoTests",
+    "test:ci": "jest --ci --runInBand",
     "version": "npm run build",
     "postversion": "npm run postbuild",
     "release": "np --contents dist/",
@@ -28,6 +28,9 @@
   "dependencies": {
     "lodash.isplainobject": "^4.0",
     "lodash.mapvalues": "^4.6"
+  },
+  "optionalDependencies": {
+    "vue-class-component": "^7.2"
   },
   "peerDependencies": {
     "apollo-client": ">=2.6",
@@ -56,9 +59,9 @@
     "eslint-plugin-promise": "4.3.1",
     "eslint-plugin-vue": "7.17.0",
     "graphql": "15.5.2",
+    "graphql-tag": "2.12.5",
     "husky": "7.0.2",
     "jest": "27.1.0",
-    "jest-html-reporters": "2.1.6",
     "lint-staged": "11.1.2",
     "mkdirp": "1.0.4",
     "np": "7.5.0",
@@ -68,7 +71,8 @@
     "typescript": "4.2.4",
     "vue": "2.6.14",
     "vue-apollo": "3.0.7",
-    "vue-jest": "3.0.7"
+    "vue-class-component": "7.2.6",
+    "vue-property-decorator": "9.1.2"
   },
   "engines": {
     "node": ">=12.9.0"
