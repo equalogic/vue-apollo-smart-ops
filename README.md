@@ -149,3 +149,8 @@ class TodoList extends Vue {
   }
 }
 ```
+
+## Credits
+
+- `@SmartQuery()` decorator is based on the [vue-apollo-decorator](https://github.com/chanlito/vue-apollo-decorator)
+  package by chanlito, with some alteration to the types.
