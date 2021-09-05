@@ -225,9 +225,11 @@ describe('@SmartQuery() decorator', () => {
         variables() {
           return this.vars;
         },
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         update(data: QueryResult) {
           // data: QueryResult
         },
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars,@typescript-eslint/no-empty-function
         result(data: ApolloQueryResult<QueryResult>) {},
         subscribeToMore: [
           {
@@ -242,6 +244,7 @@ describe('@SmartQuery() decorator', () => {
             variables() {
               return this.vars;
             },
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             updateQuery(prev, { subscriptionData: { data }, variables }) {
               return {
                 ...prev,
