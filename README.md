@@ -15,7 +15,7 @@ npm install --save vue-apollo-smart-ops
 
 ## Smart Query Usage
 
-### `createSmartQueryOptionsFunction<TResult, TVariables>(query: DocumentNode, onError?: ApolloOperationErrorHandlerFunction): VueApolloSmartQueryOptionsFunction`
+### `createSmartQueryOptionsFunction(query, onError?)`
 
 Returns a generated function which returns a [Vue Apollo Smart Query options object](https://apollo.vuejs.org/api/smart-query.html#options)
 for the given query when called.
@@ -72,7 +72,7 @@ class TodoList extends Vue {
 }
 ```
 
-### `@SmartQuery(options: VueApolloSmartQueryOptions)`
+### `@SmartQuery(options)`
 
 The `@SmartQuery()` decorator works with your generated options functions to enable the declaration of Smart Queries
 within the body of a Vue class component, instead of in the component options. This helps to keep the data property and
@@ -103,7 +103,7 @@ class TodoList extends Vue {
 
 ## Mutations Usage
 
-### `createMutationFunction(mutation: DocumentNode, onError?: ): MutationOperationFunction`
+### `createMutationFunction(mutation, onError?)`
 
 Returns a generated function which executes a mutation and returns the result when called.
 
