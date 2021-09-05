@@ -9,9 +9,7 @@ import { createDecorator, VueDecorator } from 'vue-class-component';
 import { VueApolloSmartQueryOptions } from '../query';
 
 export function SmartQuery<TApp = any, TResult = any, TVariables = OperationVariables, TError = ApolloError>(
-  options: TApp extends Vue
-    ? VueApolloSmartQueryOptions<TResult, TVariables, TError, TApp>
-    : DocumentNode,
+  options: TApp extends Vue ? VueApolloSmartQueryOptions<TResult, TVariables, TError, TApp> : DocumentNode,
 ): VueDecorator {
   return createDecorator((componentOptions: any, k: string) => {
     componentOptions.apollo = componentOptions.apollo || {};
