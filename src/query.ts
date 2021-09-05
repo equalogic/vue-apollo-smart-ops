@@ -10,11 +10,6 @@ type OverrideAllThis<O, T> = {
   [key in keyof O]: OverrideThis<O[key], T>;
 };
 
-type VueApolloQueryDefinitionWithoutVariablesAndSubscribeToMore<TResult = any, TVariables = any> = Omit<
-  VueApolloQueryDefinition<TResult, TVariables>,
-  'subscribeToMore' | 'variables'
->;
-
 type SubscribeToMoreOptionsPatched<TComponent, TResult, TVariables> = OverrideAllThis<
   Omit<VueApolloSubscribeToMoreOptions<TResult, TVariables>, 'updateQuery' | 'variables'>,
   TComponent
@@ -34,12 +29,16 @@ type UpdateQueryFn<TComponent = any, TResult = any, TSubscriptionVariables = any
   },
 ) => TResult;
 
-export interface VueApolloQueryDefinitionPatched<TComponent = any, TResult = any, TVariables = any>
-  extends OverrideAllThis<VueApolloQueryDefinitionWithoutVariablesAndSubscribeToMore<TResult, TVariables>, TComponent> {
+export interface VueApolloQueryDefinitionPatched<TComponent extends Vue = Vue, TResult = any, TVariables = any>
+  extends OverrideAllThis<
+    Omit<VueApolloQueryDefinition<TResult, TVariables>, 'subscribeToMore' | 'variables' | 'loadingKey'>,
+    TComponent
+  > {
   variables?: ((this: TComponent) => TVariables) | TVariables;
   subscribeToMore?:
     | SubscribeToMoreOptionsPatched<TComponent, TResult, TVariables>
     | Array<SubscribeToMoreOptionsPatched<TComponent, TResult, TVariables>>;
+  loadingKey?: keyof TComponent;
 }
 
 export type VueApolloSmartQueryErrorHandler<
@@ -68,12 +67,12 @@ export type VueApolloSmartQueryOptionsFunction<TResult, TVariables, TError = Apo
   TComponent extends Vue = TApp
 >(
   options?: Partial<Omit<VueApolloSmartQueryOptions<TResult, TVariables, TError, TComponent>, 'query'>>,
-) => VueApolloSmartQueryOptions<TResult, TVariables>;
+) => VueApolloSmartQueryOptions<TResult, TVariables, TError, TComponent>;
 
 export function createSmartQueryOptionsFunction<TResult, TVariables, TError = ApolloError, TApp extends Vue = Vue>(
   query: DocumentNode,
   onError?: ApolloOperationErrorHandlerFunction<TError, TApp>,
-): VueApolloSmartQueryOptionsFunction<TResult, TVariables, TError, TApp> {
+): VueApolloSmartQueryOptionsFunction<TResult, TVariables> {
   return (options = {}) => {
     const defaultErrorHandlerFn: VueApolloSmartQueryErrorHandler<TResult, TVariables, TError, TApp> = (
       error: TError,

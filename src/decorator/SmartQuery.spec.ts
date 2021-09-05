@@ -76,9 +76,12 @@ describe('@SmartQuery() decorator', () => {
           variables() {
             return this.vars;
           },
+          loadingKey: 'loading',
         }),
       )
       todos!: Todo[];
+
+      loading: number = 0;
 
       get vars(): QueryVariables {
         return {
