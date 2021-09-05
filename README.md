@@ -29,7 +29,7 @@ accepted by the generated function are fully type-checked based on the query def
 type arguments at every usage.
 
 Using the [`@graphql-codegen/typescript-vue-apollo-smart-ops` plugin](https://www.graphql-code-generator.com/docs/plugins/typescript-vue-apollo-smart-ops)
-you can automatically generate options functions for all of the query operations in your project.
+you can automatically generate options functions for all the query operations in your project.
 
 The following example manually creates an options function and assigns it to the variable `useTodoListQuery`:
 
@@ -114,7 +114,7 @@ is that the options accepted by the generated function are fully type-checked ba
 without needing to pass type arguments at every usage.
 
 Using the [`@graphql-codegen/typescript-vue-apollo-smart-ops` plugin](https://www.graphql-code-generator.com/docs/plugins/typescript-vue-apollo-smart-ops)
-you can automatically generate mutation functions for all of the mutation operations in your project.
+you can automatically generate mutation functions for all the mutation operations in your project.
 
 The following example manually creates a mutation function and assigns it to the variable `todoCreateMutation`:
 
