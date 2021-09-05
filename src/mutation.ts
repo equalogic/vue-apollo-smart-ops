@@ -41,7 +41,7 @@ export type MutationOperationFunction<TResult, TVariables extends OperationVaria
 export interface MutationOperationParams<
   TVariables extends OperationVariables,
   TError = ApolloError,
-  TContext = ApolloOperationContext
+  TContext = ApolloOperationContext,
 > {
   mutation: DocumentNode;
   variables: TVariables;
@@ -83,7 +83,7 @@ export async function mutateWithErrorHandling<
   TResult,
   TVariables extends OperationVariables,
   TError,
-  TApp extends VueAppWithApollo = VueAppWithApollo
+  TApp extends VueAppWithApollo = VueAppWithApollo,
 >(
   app: TApp,
   { mutation, variables, onError, context }: MutationOperationParams<TVariables, TError>,
@@ -123,7 +123,7 @@ export function createMutationFunction<
   TResult,
   TVariables extends OperationVariables,
   TError = ApolloError,
-  TApp extends VueAppWithApollo = VueAppWithApollo
+  TApp extends VueAppWithApollo = VueAppWithApollo,
 >(
   mutation: DocumentNode,
   onError?: ApolloOperationErrorHandlerFunction<TError, TApp>,

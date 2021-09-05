@@ -45,7 +45,7 @@ export type VueApolloSmartQueryErrorHandler<
   TResult = any,
   TVariables = OperationVariables,
   TError = ApolloError,
-  TComponent extends Vue = Vue
+  TComponent extends Vue = Vue,
 > = (
   error: TError,
   vm: TComponent,
@@ -58,13 +58,13 @@ export type VueApolloSmartQueryOptions<
   TResult = any,
   TVariables = OperationVariables,
   TError = ApolloError,
-  TComponent extends Vue = Vue
+  TComponent extends Vue = Vue,
 > = VueApolloQueryDefinitionPatched<TComponent, TResult, TVariables> & {
   error?: VueApolloSmartQueryErrorHandler<TResult, TVariables, TError, TComponent>;
 };
 
 export type VueApolloSmartQueryOptionsFunction<TResult, TVariables, TError = ApolloError, TApp extends Vue = Vue> = <
-  TComponent extends Vue = TApp
+  TComponent extends Vue = TApp,
 >(
   options?: Partial<Omit<VueApolloSmartQueryOptions<TResult, TVariables, TError, TComponent>, 'query'>>,
 ) => VueApolloSmartQueryOptions<TResult, TVariables, TError, TComponent>;
@@ -93,8 +93,8 @@ export function createSmartQueryOptionsFunction<TResult, TVariables, TError = Ap
       ...options,
       error:
         // we have to override vue-apollo types because they are incorrect
-        ((options.error as unknown) as ErrorHandler | undefined) ?? onError !== undefined
-          ? ((defaultErrorHandlerFn as unknown) as ErrorHandler)
+        (options.error as unknown as ErrorHandler | undefined) ?? onError !== undefined
+          ? (defaultErrorHandlerFn as unknown as ErrorHandler)
           : undefined,
     };
   };
