@@ -60,8 +60,8 @@ following example adds a `todos` Smart Query to a component, in Vue class compon
           skip: 0,
         };
       },
-    })
-  }
+    }),
+  },
 })
 class TodoList extends Vue {
   todos: Todo[] | null = null;
@@ -142,7 +142,7 @@ class TodoList extends Vue {
         title: 'Bake a cake',
       },
     });
-    
+
     if (!result.success) {
       throw new Error(`Failed to create Todo!`);
     }
