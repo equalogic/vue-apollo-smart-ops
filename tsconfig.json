@@ -15,19 +15,9 @@
     "strictNullChecks": true,
     "outDir": "./dist",
     "baseUrl": "./",
-    "paths": {
-    },
-    "types": [
-      "@types/node",
-      "@types/jest",
-      "vue-apollo/types"
-    ]
+    "paths": {},
+    "types": ["@types/node", "@types/jest", "vue-apollo/types"]
   },
-  "include":[
-    "src/**/*",
-    "test/**/*"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["src/**/*", "test/**/*"],
+  "exclude": ["node_modules"]
 }
