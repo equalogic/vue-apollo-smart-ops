@@ -7,12 +7,7 @@ module.exports = {
   parserOptions: {
     parser: '@typescript-eslint/parser',
   },
-  extends: [
-    'plugin:@typescript-eslint/recommended',
-    'plugin:vue/essential',
-    'prettier/vue',
-    'plugin:prettier/recommended',
-  ],
+  extends: ['plugin:@typescript-eslint/recommended', 'plugin:vue/essential', 'prettier'],
   plugins: ['@typescript-eslint', 'vue'],
   // add your custom rules here
   rules: {
