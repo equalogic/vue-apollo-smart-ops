@@ -39,6 +39,10 @@ export interface VueApolloQueryDefinitionPatched<TComponent extends Vue = Vue, T
     | SubscribeToMoreOptionsPatched<TComponent, TResult, TVariables>
     | Array<SubscribeToMoreOptionsPatched<TComponent, TResult, TVariables>>;
   loadingKey?: keyof TComponent;
+
+  // added here pending upstream fix for missing types https://github.com/vuejs/vue-apollo/pull/1257
+  throttle?: number;
+  debounce?: number;
 }
 
 export type VueApolloSmartQueryErrorHandler<
