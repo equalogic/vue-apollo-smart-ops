@@ -26,7 +26,7 @@ export interface ApolloNetworkError extends Error {
   };
 }
 
-export type GraphQLError = BaseGraphQLError & {
+export type GraphQLError = Omit<BaseGraphQLError, 'message'> & {
   message: string | Record<string, any>;
 };
 
@@ -88,5 +88,5 @@ export interface ApolloErrorHandlerResult {
 export type ApolloOperationErrorHandlerFunction<
   TError = BaseApolloError,
   TApp extends Vue = Vue,
-  TContext = ApolloOperationContext,
+  TContext = ApolloOperationContext
 > = (error: TError, app: TApp, context?: TContext) => ApolloErrorHandlerResult;
