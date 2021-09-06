@@ -102,6 +102,29 @@ export class ApolloErrorProcessor<TApp = Vue, TContext = ApolloOperationContext>
     return (this.constructor as typeof ApolloErrorProcessor).FriendlyMessages[errorCode] ?? errorMessage;
   }
 
+  protected processErrorMessage(message: GraphQLError['message']): string {
+    if (typeof message === 'object') {
+      if (message.error != null) {
+        return message.error;
+      }
+
+      return 'Unknown error: ' + JSON.stringify(message);
+    }
+
+    return message;
+  }
+
+  protected normalizeError(error: GraphQLError | Error): Error {
+    if (isGraphQLError(error)) {
+      return {
+        ...error,
+        message: this.processErrorMessage(error.message),
+      };
+    }
+
+    return error;
+  }
+
   private processApolloError(error: ApolloError): ProcessedApolloError[] {
     if (error.graphQLErrors != null && error.graphQLErrors.length > 0) {
       // Successful request but with errors from the resolver
@@ -140,8 +163,8 @@ export class ApolloErrorProcessor<TApp = Vue, TContext = ApolloOperationContext>
       // Unauthorized (not logged in, or not allowed) error
       const processedError: UnauthorizedError = {
         type: ApolloErrorType.UNAUTHORIZED_ERROR,
-        error,
-        message: error.message,
+        error: this.normalizeError(error),
+        message: this.processErrorMessage(error.message),
         path: error.path,
       };
 
@@ -154,8 +177,8 @@ export class ApolloErrorProcessor<TApp = Vue, TContext = ApolloOperationContext>
       // User input validation error
       const processedError: InputValidationError = {
         type: ApolloErrorType.INPUT_VALIDATION_ERROR,
-        error,
-        message: error.message,
+        error: this.normalizeError(error),
+        message: this.processErrorMessage(error.message),
         path: error.path,
         invalidArgs: error.extensions.invalidArgs,
         violations: error.extensions.validationErrors,
@@ -169,9 +192,9 @@ export class ApolloErrorProcessor<TApp = Vue, TContext = ApolloOperationContext>
     // Other GraphQL resolver error - probably a bug
     const processedError: ServerError = {
       type: error.extensions?.code != null ? error.extensions.code : ApolloErrorType.SERVER_ERROR,
-      error,
+      error: this.normalizeError(error),
+      message: this.getFriendlyMessage('INTERNAL_SERVER_ERROR', this.processErrorMessage(error.message)),
       path: error.path,
-      message: this.getFriendlyMessage('INTERNAL_SERVER_ERROR', error.message),
     };
 
     this.onServerError(processedError);
@@ -203,17 +226,5 @@ export class ApolloErrorProcessor<TApp = Vue, TContext = ApolloOperationContext>
     });
 
     return errors;
-  }
-
-  private processErrorMessage(message: GraphQLError['message']): string {
-    if (typeof message === 'object') {
-      if (message.error != null) {
-        return message.error;
-      }
-
-      return 'Unknown error: ' + JSON.stringify(message);
-    }
-
-    return message;
   }
 }
