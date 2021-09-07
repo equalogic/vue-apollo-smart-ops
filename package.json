@@ -1,6 +1,6 @@
 {
   "name": "vue-apollo-smart-ops",
-  "version": "0.1.0-alpha.5",
+  "version": "0.1.0",
   "description": "Create TypeScript-typed operation functions for your Vue Apollo queries and mutations.",
   "author": "Madscience Ltd",
   "license": "MIT",
