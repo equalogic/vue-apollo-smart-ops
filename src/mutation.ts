@@ -137,8 +137,8 @@ export function createMutationFunction<
       app,
       {
         mutation,
+        onError,
         ...params,
-        onError: params.onError ?? onError,
       },
       client,
     );
