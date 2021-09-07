@@ -33,18 +33,17 @@ export type ApolloMutationClient<TResult, TVariables extends OperationVariables>
 // Mutation function with typings
 export type MutationOperationFunction<TResult, TVariables extends OperationVariables, TError = ApolloError> = (
   app: VueAppWithApollo,
-  params: Omit<MutationOperationParams<TVariables, TError>, 'mutation'>,
+  params: Omit<MutationOperationParams<TResult, TVariables, TError>, 'mutation'>,
   client?: ApolloMutationClient<TResult, TVariables>,
 ) => Promise<MutationResult<TResult>>;
 
 // Parameters given to a MutationOperationFunction
 export interface MutationOperationParams<
+  TResult,
   TVariables extends OperationVariables,
   TError = ApolloError,
   TContext = ApolloOperationContext,
-> {
-  mutation: DocumentNode;
-  variables: TVariables;
+> extends MutationOptions<TResult, TVariables> {
   context?: TContext;
   onError?: ApolloOperationErrorHandlerFunction<TError>;
 }
@@ -86,10 +85,10 @@ export async function mutateWithErrorHandling<
   TApp extends VueAppWithApollo = VueAppWithApollo,
 >(
   app: TApp,
-  { mutation, variables, onError, context }: MutationOperationParams<TVariables, TError>,
+  params: MutationOperationParams<TResult, TVariables, TError>,
   client?: ApolloMutationClient<TResult, TVariables>,
 ): Promise<MutationResult<TResult>> {
-  const mutate =
+  const mutate: ApolloClientMutationFunction | ApolloComponentMutationFunction =
     client === undefined
       ? app.$apollo.mutate.bind(app.$apollo)
       : typeof client === 'function'
@@ -98,8 +97,8 @@ export async function mutateWithErrorHandling<
 
   try {
     const result = await mutate({
-      mutation,
-      variables: cleanInput(variables),
+      ...params,
+      variables: params.variables != null ? cleanInput(params.variables) : undefined,
     });
 
     if (result == null) {
@@ -108,6 +107,7 @@ export async function mutateWithErrorHandling<
 
     return { success: true, data: result.data };
   } catch (error) {
+    const { onError, context } = params;
     const errorHandlerResult: ApolloErrorHandlerResult | undefined =
       onError != null ? onError(error, app, context) : undefined;
 
@@ -130,16 +130,15 @@ export function createMutationFunction<
 ): MutationOperationFunction<TResult, TVariables, TError> {
   return (
     app: TApp,
-    params: Omit<MutationOperationParams<TVariables, TError>, 'mutation'>,
+    params: Omit<MutationOperationParams<TResult, TVariables, TError>, 'mutation'>,
     client?: ApolloMutationClient<TResult, TVariables>,
   ): Promise<MutationResult<TResult>> => {
     return mutateWithErrorHandling(
       app,
       {
         mutation,
-        variables: params.variables,
-        onError: params.onError ?? onError,
-        context: params.context,
+        onError,
+        ...params,
       },
       client,
     );
