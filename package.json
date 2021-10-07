@@ -49,7 +49,7 @@
     "@vue/test-utils": "1.2.2",
     "apollo-client": "2.6.10",
     "apollo-link": "1.2.14",
-    "barrelsby": "2.2.0",
+    "barrelsby": "2.3.0",
     "dotenv-cli": "4.0.0",
     "eslint": "7.32.0",
     "eslint-config-prettier": "8.3.0",
