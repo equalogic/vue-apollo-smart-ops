@@ -2,7 +2,7 @@ import { ErrorHandler, VueApolloSubscriptionDefinition } from 'vue-apollo/types/
 import { ApolloError, OperationVariables } from 'apollo-client';
 import { DocumentNode } from 'graphql';
 import { Vue } from 'vue/types/vue';
-import { ApolloOperationErrorHandlerFunction } from './types';
+import { ApolloOperationErrorHandlerFunction } from './error';
 
 export type VueApolloSmartSubscriptionErrorHandler<
   TResult = any,

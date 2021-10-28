@@ -1,33 +1,9 @@
 import { ApolloError, OperationVariables } from 'apollo-client';
 import { DocumentNode } from 'graphql';
-import { ErrorHandler, VueApolloQueryDefinition, VueApolloSubscribeToMoreOptions } from 'vue-apollo/types/options';
+import { ErrorHandler, VueApolloQueryDefinition } from 'vue-apollo/types/options';
 import { Vue } from 'vue/types/vue';
-import { ApolloOperationErrorHandlerFunction } from './types';
-
-type OverrideThis<F, T> = F extends (...args: infer A) => infer B ? (this: T, ...args: A) => B : F;
-
-type OverrideAllThis<O, T> = {
-  [key in keyof O]: OverrideThis<O[key], T>;
-};
-
-type SubscribeToMoreOptionsPatched<TComponent, TResult, TVariables> = OverrideAllThis<
-  Omit<VueApolloSubscribeToMoreOptions<TResult, TVariables>, 'updateQuery' | 'variables'>,
-  TComponent
-> & {
-  variables?: (this: TComponent) => any;
-  updateQuery?: UpdateQueryFn<TComponent, TResult, any, any>; // TODO: How should we pass subscript data & variables types?
-};
-
-type UpdateQueryFn<TComponent = any, TResult = any, TSubscriptionVariables = any, TSubscriptionData = any> = (
-  this: TComponent,
-  previousQueryResult: TResult,
-  options: {
-    subscriptionData: {
-      data: TSubscriptionData;
-    };
-    variables?: TSubscriptionVariables;
-  },
-) => TResult;
+import { ApolloOperationErrorHandlerFunction } from './error';
+import { OverrideAllThis, SubscribeToMoreOptionsPatched } from './types';
 
 export interface VueApolloQueryDefinitionPatched<TComponent extends Vue = Vue, TResult = any, TVariables = any>
   extends OverrideAllThis<
