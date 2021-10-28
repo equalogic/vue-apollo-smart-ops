@@ -3,6 +3,6 @@
  */
 
 export * from './ApolloErrorHandlerResult';
-export * from './ApolloErrorProcessor';
 export * from './handleApolloError';
+export * from './processApolloError';
 export * from './types';

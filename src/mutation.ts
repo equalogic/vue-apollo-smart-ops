@@ -113,7 +113,7 @@ export async function mutateWithErrorHandling<
 
     return {
       success: false,
-      errors: errorHandlerResult?.processedErrors,
+      errors: errorHandlerResult?.allErrors,
       validationRuleViolations: errorHandlerResult?.validationRuleViolations,
     };
   }

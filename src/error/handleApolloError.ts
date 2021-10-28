@@ -1,8 +1,8 @@
-import { ApolloErrorProcessor } from './ApolloErrorProcessor';
+import { processApolloError } from './processApolloError';
 import { ApolloOperationContext } from '../types';
 import { Vue } from 'vue/types/vue';
 import { ApolloError, ApolloOperationErrorHandlerFunction } from './types';
-import { ApolloErrorHandlerResultInterface } from './ApolloErrorHandlerResult';
+import { ApolloErrorHandlerResult, ApolloErrorHandlerResultInterface } from './ApolloErrorHandlerResult';
 
 /**
  * This is a simple example of an error handler function. You can copy this and implement your own in your application.
@@ -12,11 +12,22 @@ export const handleApolloError: ApolloOperationErrorHandlerFunction<ApolloError,
   app: Vue,
   context?: ApolloOperationContext,
 ): ApolloErrorHandlerResultInterface => {
-  const processor = new ApolloErrorProcessor(error, app, context ?? {});
+  const { unhandledErrors, handledErrors } = processApolloError(error, {
+    app,
+    context,
+    // Example of a handler function for a particular type of error:
+    onUnauthorizedError: error => {
+      console.warn('Unauthorized! Logging you out...', error);
+      //logout();
 
-  processor.showErrorNotifications();
+      // Returning true indicates to the processor that we've handled this error
+      return true;
+    },
+  });
 
-  return {
-    processedErrors: processor.processedErrors,
-  };
+  unhandledErrors.forEach(error => {
+    console.error(`${error.type}: ${error.message}`, error.error);
+  });
+
+  return new ApolloErrorHandlerResult(unhandledErrors, handledErrors);
 };
