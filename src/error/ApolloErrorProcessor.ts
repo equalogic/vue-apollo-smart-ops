@@ -8,7 +8,7 @@ import {
   ProcessedApolloError,
   ServerError,
   UnauthorizedError,
-} from './types';
+} from '../types';
 
 export function isApolloError(error: ApolloError | any): error is ApolloError {
   return error.graphQLErrors !== undefined;

@@ -4,7 +4,7 @@ import {
   ApolloErrorHandlerResult,
   ApolloOperationContext,
   ApolloOperationErrorHandlerFunction,
-} from './types';
+} from '../types';
 import { Vue } from 'vue/types/vue';
 
 /**
