@@ -9,6 +9,7 @@ import {
   ServerError,
   UnauthorizedError,
 } from './types';
+import { ApolloErrorHandlerResult } from './ApolloErrorHandlerResult';
 
 export function isApolloError(error: ApolloError | any): error is ApolloError {
   return error.graphQLErrors !== undefined;
@@ -25,11 +26,12 @@ export class ApolloErrorProcessor<TApp = Vue, TContext = ApolloOperationContext>
     INTERNAL_SERVER_ERROR: `A server error has occurred.`,
   };
 
-  public processedErrors: ProcessedApolloError[];
+  public readonly processedErrors: ProcessedApolloError[];
 
   protected readonly originalError: Error;
   protected readonly app: TApp;
   protected readonly context: TContext;
+  protected handledErrors: ProcessedApolloError[] = [];
 
   public constructor(error: ApolloError, app: TApp, context: TContext) {
     this.originalError = error;
@@ -37,6 +39,10 @@ export class ApolloErrorProcessor<TApp = Vue, TContext = ApolloOperationContext>
     this.context = context;
 
     this.processedErrors = this.processApolloError(error);
+  }
+
+  public get result(): ApolloErrorHandlerResult {
+    return new ApolloErrorHandlerResult(this.processedErrors, this.handledErrors);
   }
 
   public showErrorNotifications(): void {
