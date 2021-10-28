@@ -1,11 +1,8 @@
 import { ApolloErrorProcessor } from './ApolloErrorProcessor';
-import {
-  ApolloError,
-  ApolloErrorHandlerResult,
-  ApolloOperationContext,
-  ApolloOperationErrorHandlerFunction,
-} from '../types';
+import { ApolloOperationContext } from '../types';
 import { Vue } from 'vue/types/vue';
+import { ApolloError, ApolloOperationErrorHandlerFunction } from './types';
+import { ApolloErrorHandlerResultInterface } from './ApolloErrorHandlerResult';
 
 /**
  * This is a simple example of an error handler function. You can copy this and implement your own in your application.
@@ -14,7 +11,7 @@ export const handleApolloError: ApolloOperationErrorHandlerFunction<ApolloError,
   error: ApolloError,
   app: Vue,
   context?: ApolloOperationContext,
-): ApolloErrorHandlerResult => {
+): ApolloErrorHandlerResultInterface => {
   const processor = new ApolloErrorProcessor(error, app, context ?? {});
 
   processor.showErrorNotifications();

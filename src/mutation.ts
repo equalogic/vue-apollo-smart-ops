@@ -6,13 +6,13 @@ import { FetchPolicy, MutationBaseOptions } from 'apollo-client/core/watchQueryO
 import { Vue } from 'vue/types/vue';
 import mapValues from 'lodash.mapvalues';
 import isPlainObject from 'lodash.isplainobject';
+import { ApolloOperationContext } from './types';
 import {
-  ApolloErrorHandlerResult,
-  ApolloOperationContext,
+  ApolloErrorHandlerResultInterface,
   ApolloOperationErrorHandlerFunction,
   ProcessedApolloError,
   ValidationRuleViolation,
-} from './types';
+} from './error';
 
 export type ApolloComponentMutationFunction<R = any, TVariables = OperationVariables> = (
   options: MutationBaseOptions<R, TVariables> &
@@ -108,7 +108,7 @@ export async function mutateWithErrorHandling<
     return { success: true, data: result.data };
   } catch (error) {
     const { onError, context } = params;
-    const errorHandlerResult: ApolloErrorHandlerResult | undefined =
+    const errorHandlerResult: ApolloErrorHandlerResultInterface | undefined =
       onError != null ? onError(error, app, context) : undefined;
 
     return {
