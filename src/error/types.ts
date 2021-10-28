@@ -83,4 +83,5 @@ export type ApolloOperationErrorHandlerFunction<
   TError = BaseApolloError,
   TApp extends Vue = Vue,
   TContext = ApolloOperationContext,
-> = (error: TError, app: TApp, context?: TContext) => ApolloErrorHandlerResultInterface;
+  TResult = ApolloErrorHandlerResultInterface,
+> = (error: TError, app: TApp, context?: TContext) => TResult;
