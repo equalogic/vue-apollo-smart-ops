@@ -139,9 +139,3 @@ jobs:
         run: node_modules/.bin/dotenv -e .env.ci -- npm run test:ci
         env:
           CI: true
-      - if: always()
-        name: Persisting test-results.html artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: test-results.html
-          path: test/.results/test-results.html
