@@ -60,9 +60,7 @@
     "eslint-plugin-vue": "8.1.1",
     "graphql": "15.7.2",
     "graphql-tag": "2.12.6",
-    "husky": "7.0.4",
     "jest": "27.4.3",
-    "lint-staged": "12.1.2",
     "mkdirp": "1.0.4",
     "np": "7.6.0",
     "prettier": "2.5.1",
@@ -78,13 +76,5 @@
     "node": ">=12.9.0"
   },
   "main": "index.js",
-  "types": "index.d.ts",
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{ts,js}": "eslint --ext .ts,.js --ignore-path .gitignore --fix --cache"
-  }
+  "types": "index.d.ts"
 }
