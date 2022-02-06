@@ -2,14 +2,14 @@
   "name": "vue-apollo-smart-ops",
   "version": "0.2.0-beta.1",
   "description": "Create TypeScript-typed operation functions for your Vue Apollo queries and mutations.",
-  "author": "Madscience Ltd",
+  "author": "Equalogic Ltd",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/madscience/vue-apollo-smart-ops.git"
+    "url": "https://github.com/equalogic/vue-apollo-smart-ops.git"
   },
   "scripts": {
     "prebuild": "rimraf dist && npm run barrels:generate",
