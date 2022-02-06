@@ -56,7 +56,7 @@
     "eslint-plugin-import": "2.25.3",
     "eslint-plugin-jest": "26.0.0",
     "eslint-plugin-node": "11.1.0",
-    "eslint-plugin-promise": "5.1.1",
+    "eslint-plugin-promise": "6.0.0",
     "eslint-plugin-vue": "8.1.1",
     "graphql": "15.8.0",
     "graphql-tag": "2.12.6",
