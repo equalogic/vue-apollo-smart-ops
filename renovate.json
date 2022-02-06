@@ -22,6 +22,12 @@
     {
       "packagePatterns": ["jest"],
       "groupName": "jest"
+    },
+    {
+      "matchDatasources": ["nvm", "npm"],
+      "matchPackageNames": ["node", "@types/node"],
+      "groupName": "Node.js",
+      "allowedVersions": "^16"
     }
   ]
 }
