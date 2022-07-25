@@ -37,6 +37,7 @@
     "vue": "^3.2.37"
   },
   "devDependencies": {
+    "@types/jest": "^27.5.2",
     "@types/lodash.isplainobject": "4.0.7",
     "@types/lodash.mapvalues": "^4.6.7",
     "@typescript-eslint/eslint-plugin": "^5.31.0",

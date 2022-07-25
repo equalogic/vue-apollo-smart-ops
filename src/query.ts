@@ -1,4 +1,4 @@
-import { ApolloError, OperationVariables } from '@apollo/client';
+import { ApolloError, OperationVariables } from '@apollo/client/core';
 import { DocumentNode } from 'graphql';
 import { ErrorHandler, VueApolloQueryDefinition } from '@vue/apollo-option/types/options';
 import type { App as Vue } from '@vue/runtime-core';

@@ -16,7 +16,7 @@
     "outDir": "./dist",
     "baseUrl": "./",
     "paths": {},
-    "types": ["@types/node", "@types/jest", "vue-apollo/types"]
+    "types": ["@types/node", "@types/jest"]
   },
   "include": ["src/**/*", "test/**/*"],
   "exclude": ["node_modules"]

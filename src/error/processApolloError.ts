@@ -1,4 +1,4 @@
-import Vue from 'vue';
+import type { App as Vue } from '@vue/runtime-core'
 import { ApolloOperationContext } from '../types';
 import {
   ApolloError,
@@ -8,7 +8,9 @@ import {
   NetworkError,
   ProcessedApolloError,
   ServerError,
+  StatusException,
   UnauthorizedError,
+  ValidationRuleViolation,
 } from './types';
 
 export function isApolloError(error: ApolloError | any): error is ApolloError {
@@ -67,7 +69,7 @@ const defaultProcessorOptions: ApolloErrorProcessorOptions = {
   isUnauthorizedError: (error: GraphQLError) =>
     error.message === 'Unauthorized' ||
     error.extensions?.code === 'FORBIDDEN' ||
-    error.extensions?.exception?.status === 401,
+    (error.extensions?.exception as StatusException)?.status === 401,
   translations: defaultErrorMessageTranslations,
 };
 
@@ -106,8 +108,8 @@ function processGraphQLError(
       error: normalizeError(error),
       message: normalizeErrorMessage(error.message),
       path: error.path,
-      invalidArgs: error.extensions.invalidArgs,
-      violations: error.extensions.validationErrors,
+      invalidArgs: error.extensions.invalidArgs as string[],
+      violations: error.extensions.validationErrors as ValidationRuleViolation[],
     };
 
     if (onInputValidationError != null && onInputValidationError(processedError)) {
@@ -119,7 +121,7 @@ function processGraphQLError(
 
   // Other GraphQL resolver error - probably a bug
   const processedError: ServerError = {
-    type: error.extensions?.code != null ? error.extensions.code : ApolloErrorType.SERVER_ERROR,
+    type: (error.extensions?.code != null ? error.extensions.code : ApolloErrorType.SERVER_ERROR) as ApolloErrorType.SERVER_ERROR,
     error: normalizeError(error),
     message: translateErrorMessage('INTERNAL_SERVER_ERROR', translations ?? defaultErrorMessageTranslations),
     path: error.path,

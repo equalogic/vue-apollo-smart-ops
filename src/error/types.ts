@@ -1,5 +1,5 @@
 import { GraphQLError as BaseGraphQLError } from 'graphql';
-import { ApolloError as BaseApolloError } from '@apollo/client';
+import { ApolloError as BaseApolloError } from '@apollo/client/core';
 import type { App as Vue } from '@vue/runtime-core'
 import { ApolloOperationContext } from '../types';
 import { ApolloErrorHandlerResultInterface } from './ApolloErrorHandlerResult';
@@ -24,6 +24,10 @@ export interface ApolloNetworkError extends Error {
   result?: {
     errors: GraphQLError[];
   };
+}
+
+export interface StatusException {
+  status?: number
 }
 
 export type GraphQLError = Omit<BaseGraphQLError, 'message'> & {
