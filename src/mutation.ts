@@ -3,7 +3,7 @@ import { DocumentNode } from 'graphql';
 import { ClientOptions, DollarApollo } from '@vue/apollo-option/types/vue-apollo';
 import { FetchResult } from '@apollo/client/core';
 import { FetchPolicy, MutationBaseOptions } from '@apollo/client/core/watchQueryOptions';
-import type { App as Vue } from '@vue/runtime-core'
+import type { App as Vue } from '@vue/runtime-core';
 
 import mapValues from 'lodash.mapvalues';
 import isPlainObject from 'lodash.isplainobject';

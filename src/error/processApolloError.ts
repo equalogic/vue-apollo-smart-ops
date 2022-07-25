@@ -1,4 +1,4 @@
-import type { App as Vue } from '@vue/runtime-core'
+import type { App as Vue } from '@vue/runtime-core';
 import { ApolloOperationContext } from '../types';
 import {
   ApolloError,
@@ -121,7 +121,9 @@ function processGraphQLError(
 
   // Other GraphQL resolver error - probably a bug
   const processedError: ServerError = {
-    type: (error.extensions?.code != null ? error.extensions.code : ApolloErrorType.SERVER_ERROR) as ApolloErrorType.SERVER_ERROR,
+    type: (error.extensions?.code != null
+      ? error.extensions.code
+      : ApolloErrorType.SERVER_ERROR) as ApolloErrorType.SERVER_ERROR,
     error: normalizeError(error),
     message: translateErrorMessage('INTERNAL_SERVER_ERROR', translations ?? defaultErrorMessageTranslations),
     path: error.path,
