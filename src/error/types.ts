@@ -1,6 +1,6 @@
 import { GraphQLError as BaseGraphQLError } from 'graphql';
-import { ApolloError as BaseApolloError } from 'apollo-client';
-import { Vue } from 'vue/types/vue';
+import { ApolloError as BaseApolloError } from '@apollo/client';
+import type { App as Vue } from '@vue/runtime-core'
 import { ApolloOperationContext } from '../types';
 import { ApolloErrorHandlerResultInterface } from './ApolloErrorHandlerResult';
 

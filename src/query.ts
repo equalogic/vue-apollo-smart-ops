@@ -1,7 +1,7 @@
-import { ApolloError, OperationVariables } from 'apollo-client';
+import { ApolloError, OperationVariables } from '@apollo/client';
 import { DocumentNode } from 'graphql';
-import { ErrorHandler, VueApolloQueryDefinition } from 'vue-apollo/types/options';
-import { Vue } from 'vue/types/vue';
+import { ErrorHandler, VueApolloQueryDefinition } from '@vue/apollo-option/types/options';
+import type { App as Vue } from '@vue/runtime-core';
 import { ApolloOperationErrorHandlerFunction } from './error';
 import { OverrideAllThis, SubscribeToMoreOptionsPatched } from './types';
 

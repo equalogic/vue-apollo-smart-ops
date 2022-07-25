@@ -1,6 +1,6 @@
 import { processApolloError } from './processApolloError';
 import { ApolloOperationContext } from '../types';
-import { Vue } from 'vue/types/vue';
+import type { App as Vue } from '@vue/runtime-core';
 import { ApolloError, ApolloOperationErrorHandlerFunction } from './types';
 import { ApolloErrorHandlerResult } from './ApolloErrorHandlerResult';
 

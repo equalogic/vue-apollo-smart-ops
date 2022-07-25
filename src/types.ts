@@ -1,4 +1,4 @@
-import { VueApolloSubscribeToMoreOptions } from 'vue-apollo/types/options';
+import { VueApolloSubscribeToMoreOptions } from '@vue/apollo-option/types/options';
 
 type OverrideThis<F, T> = F extends (...args: infer A) => infer B ? (this: T, ...args: A) => B : F;
 

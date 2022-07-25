@@ -1,7 +1,7 @@
-import { ErrorHandler, VueApolloSubscriptionDefinition } from 'vue-apollo/types/options';
-import { ApolloError, OperationVariables } from 'apollo-client';
+import { ErrorHandler, VueApolloSubscriptionDefinition } from '@vue/apollo-option/types/options';
+import { ApolloError, OperationVariables } from '@apollo/client';
 import { DocumentNode } from 'graphql';
-import { Vue } from 'vue/types/vue';
+import type { App as Vue } from '@vue/runtime-core';
 import { ApolloOperationErrorHandlerFunction } from './error';
 
 export type VueApolloSmartSubscriptionErrorHandler<

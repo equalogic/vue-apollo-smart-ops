@@ -1,9 +1,10 @@
-import { ApolloError, MutationOptions, OperationVariables } from 'apollo-client';
+import { ApolloError, MutationOptions, OperationVariables } from '@apollo/client';
 import { DocumentNode } from 'graphql';
-import { ClientOptions, DollarApollo } from 'vue-apollo/types/vue-apollo';
-import { FetchResult } from 'apollo-link';
-import { FetchPolicy, MutationBaseOptions } from 'apollo-client/core/watchQueryOptions';
-import { Vue } from 'vue/types/vue';
+import { ClientOptions, DollarApollo } from '@vue/apollo-option/types/vue-apollo';
+import { FetchResult } from '@apollo/client';
+import { FetchPolicy, MutationBaseOptions } from '@apollo/client/core/watchQueryOptions';
+import type { App as Vue } from '@vue/runtime-core'
+
 import mapValues from 'lodash.mapvalues';
 import isPlainObject from 'lodash.isplainobject';
 import { ApolloOperationContext } from './types';
