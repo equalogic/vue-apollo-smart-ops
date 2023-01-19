@@ -61,7 +61,7 @@
     "graphql": "15.8.0",
     "graphql-tag": "2.12.6",
     "jest": "27.5.1",
-    "mkdirp": "1.0.4",
+    "mkdirp": "2.0.0",
     "np": "7.6.3",
     "prettier": "2.8.3",
     "rimraf": "4.0.7",
