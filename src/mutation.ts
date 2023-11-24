@@ -92,8 +92,8 @@ export async function mutateWithErrorHandling<
     client === undefined
       ? app.$apollo.mutate.bind(app.$apollo)
       : typeof client === 'function'
-      ? client
-      : client.mutate.bind(client);
+        ? client
+        : client.mutate.bind(client);
 
   try {
     const result = await mutate({
