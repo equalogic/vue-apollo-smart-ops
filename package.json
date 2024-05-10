@@ -50,7 +50,7 @@
     "apollo-client": "2.6.10",
     "apollo-link": "1.2.14",
     "barrelsby": "2.8.1",
-    "dotenv-cli": "7.4.1",
+    "dotenv-cli": "7.4.2",
     "eslint": "9.0.0",
     "eslint-config-prettier": "9.1.0",
     "eslint-plugin-import": "2.29.1",
