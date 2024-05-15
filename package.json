@@ -64,7 +64,7 @@
     "mkdirp": "3.0.1",
     "np": "10.0.0",
     "prettier": "3.2.5",
-    "rimraf": "5.0.6",
+    "rimraf": "5.0.7",
     "ts-jest": "27.1.5",
     "typescript": "5.4.2",
     "vue": "2.7.16",
