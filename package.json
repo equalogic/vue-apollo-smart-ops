@@ -46,7 +46,7 @@
     "@types/lodash.mapvalues": "4.6.9",
     "@typescript-eslint/eslint-plugin": "8.48.0",
     "@typescript-eslint/parser": "8.48.0",
-    "@vue/test-utils": "2.4.5",
+    "@vue/test-utils": "2.4.6",
     "apollo-client": "2.6.10",
     "apollo-link": "1.2.14",
     "barrelsby": "2.8.1",
