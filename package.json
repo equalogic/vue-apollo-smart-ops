@@ -59,7 +59,7 @@
     "eslint-plugin-promise": "7.2.1",
     "eslint-plugin-vue": "10.6.0",
     "graphql": "17.0.1",
-    "graphql-tag": "2.12.6",
+    "graphql-tag": "2.12.7",
     "jest": "27.5.1",
     "mkdirp": "3.0.1",
     "np": "11.2.1",
