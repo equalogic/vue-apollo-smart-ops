@@ -17,7 +17,7 @@ jobs:
       - name: Use Node.js 16.x
         uses: actions/setup-node@v7
         with:
-          node-version: '24.x'
+          node-version: '26.x'
           always-auth: true
           registry-url: https://registry.npmjs.org
       # Dependencies
